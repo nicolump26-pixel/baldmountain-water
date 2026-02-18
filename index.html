@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bald Mountain Spring Water | Todd, NC</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --cream: #f4efe4;
+            --parchment: #ede5d0;
+            --dark-green: #2b4520;
+            --forest: #3a5c2e;
+            --stone: #7a8c7d;
+            --brown: #6b4c1e;
+            --gold: #c4a24a;
+            --gold-light: #d4b36a;
+            --dark: #141f10;
+            --text: #2c2c2c;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            color: var(--text);
+            background: var(--cream);
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 200;
+            padding: 1.25rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(20, 31, 16, 0.82);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(196, 162, 74, 0.15);
+            transition: background 0.4s;
+        }
+
+        .nav-logo {
+            color: var(--gold);
+            font-size: 1.05rem;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+
+        .nav-logo span {
+            display: block;
+            font-size: 0.58rem;
+            letter-spacing: 3.5px;
+            color: rgba(255,255,255,0.45);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        .nav-links { display: flex; gap: 0; }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            margin-left: 2.5rem;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+
+        /* ── HERO ── */
+        #hero {
+            height: 100vh;
+            min-height: 620px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('IMG_6768.jpeg');
+            background-size: cover;
+            background-position: center 40%;
+            filter: brightness(0.55) saturate(0.9);
+        }
+
+        /* subtle vignette */
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.45) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 860px;
+            padding: 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            border: 1px solid rgba(196, 162, 74, 0.7);
+            color: var(--gold);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            padding: 0.45rem 1.4rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-content h1 {
+            color: #fff;
+            font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+            line-height: 1.18;
+            margin-bottom: 1.4rem;
+            text-shadow: 0 2px 24px rgba(0,0,0,0.55);
+            font-weight: normal;
+        }
+
+        .hero-content h1 em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        .hero-content p {
+            color: rgba(255,255,255,0.82);
+            font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 0.95rem 2.8rem;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 4px 20px rgba(196, 162, 74, 0.35);
+        }
+
+        .hero-cta:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(196, 162, 74, 0.45);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.5);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            animation: bounce 2.2s ease-in-out infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50%       { transform: translateX(-50%) translateY(7px); }
+        }
+
+        /* ── SHARED UTILITIES ── */
+        .section-label {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 4.5px;
+            text-transform: uppercase;
+            color: var(--stone);
+            margin-bottom: 0.6rem;
+        }
+
+        .gold-rule {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin-bottom: 1.8rem;
+        }
+
+        .section-header { text-align: center; margin-bottom: 3.5rem; }
+        .section-header .gold-rule { margin-left: auto; margin-right: auto; }
+
+        /* ── ABOUT ── */
+        #about {
+            padding: 7rem 2rem;
+            background: var(--cream);
+        }
+
+        .about-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: clamp(1.9rem, 3vw, 2.9rem);
+            color: var(--dark-green);
+            line-height: 1.22;
+            margin-bottom: 1.4rem;
+            font-weight: normal;
+        }
+
+        .about-text p {
+            color: #575757;
+            line-height: 1.9;
+            margin-bottom: 1.15rem;
+            font-size: 1.03rem;
+        }
+
+        .about-text p strong { color: var(--dark-green); font-weight: 600; }
+
+        .about-text blockquote {
+            border-left: 3px solid var(--gold);
+            margin: 2rem 0;
+            padding: 0.5rem 0 0.5rem 1.4rem;
+            color: var(--forest);
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.75;
+        }
+
+        .about-image-wrap {
+            position: relative;
+        }
+
+        .about-image-wrap img {
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* decorative frame */
+        .about-image-wrap::before {
+            content: '';
+            position: absolute;
+            top: -14px; right: -14px;
+            width: 100%; height: 100%;
+            border: 2px solid var(--gold);
+            z-index: 0;
+        }
+
+        /* ── FEATURES STRIP ── */
+        #features {
+            background: var(--dark-green);
+            padding: 5.5rem 2rem;
+        }
+
+        .features-header { text-align: center; margin-bottom: 3.5rem; }
+
+        .features-header h2 {
+            color: var(--cream);
+            font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+            font-weight: normal;
+            margin-bottom: 0.6rem;
+        }
+
+        .features-header p {
+            color: rgba(255,255,255,0.5);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.88rem;
+            letter-spacing: 0.5px;
+        }
+
+        .features-header .section-label { color: var(--gold); }
+        .features-header .gold-rule { margin: 0 auto 1.8rem; }
+
+        .features-grid {
+            max-width: 1060px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            padding: 2.2rem 1.8rem;
+            border: 1px solid rgba(196, 162, 74, 0.2);
+            background: rgba(255,255,255,0.03);
+            transition: border-color 0.3s, transform 0.3s, background 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(196, 162, 74, 0.6);
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.06);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1.1rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            color: var(--gold);
+            font-size: 1.05rem;
+            margin-bottom: 0.8rem;
+            font-weight: normal;
+        }
+
+        .feature-card p {
+            color: rgba(255,255,255,0.62);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.88rem;
+            line-height: 1.75;
+        }
+
+        /* ── GALLERY ── */
+        #gallery {
+            padding: 7rem 2rem;
+            background: var(--parchment);
+        }
+
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 320px 320px;
+            gap: 12px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            background: #1a1a1a;
+        }
+
+        /* hero gallery image spans full left column */
+        .gallery-item:first-child {
+            grid-row: 1 / span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-item:hover img { transform: scale(1.06); }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(43, 69, 32, 0);
+            transition: background 0.35s;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.2rem;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            background: rgba(43, 69, 32, 0.28);
+        }
+
+        .gallery-caption {
+            color: rgba(255,255,255,0);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.35s;
+        }
+
+        .gallery-item:hover .gallery-caption { color: rgba(255,255,255,0.85); }
+
+        /* ── LIGHTBOX ── */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.93);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox img {
+            max-width: 92vw;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .lightbox-close:hover { color: var(--gold); }
+
+        /* ── WHOLESALE ── */
+        #wholesale {
+            background: var(--dark);
+            padding: 7rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #wholesale::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('IMG_6771.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.12;
+        }
+
+        .wholesale-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .wholesale-inner .section-label { color: var(--gold); }
+        .wholesale-inner .gold-rule { margin: 0 auto 1.8rem; }
+
+        .wholesale-inner h2 {
+            color: var(--cream);
+            font-size: clamp(1.9rem, 3vw, 2.9rem);
+            margin-bottom: 1.2rem;
+            line-height: 1.22;
+            font-weight: normal;
+        }
+
+        .wholesale-inner > p {
+            color: rgba(255,255,255,0.62);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.85;
+            margin-bottom: 3rem;
+            font-size: 0.97rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 0.9rem 1.25rem;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(196, 162, 74, 0.3);
+            color: rgba(255,255,255,0.9);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.25s, background 0.25s;
+            -webkit-appearance: none;
+            border-radius: 0;
+        }
+
+        .contact-form select {
+            color: rgba(255,255,255,0.55);
+            cursor: pointer;
+        }
+
+        .contact-form select.filled { color: rgba(255,255,255,0.9); }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255,255,255,0.35);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            border-color: var(--gold);
+            background: rgba(255,255,255,0.09);
+        }
+
+        .contact-form select option {
+            background: #1a2e16;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .contact-form textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--gold);
+            color: var(--dark);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.25s, transform 0.25s;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled { cursor: default; }
+
+        .contact-note {
+            margin-top: 2rem;
+            color: rgba(255,255,255,0.38);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.82rem;
+            text-align: center;
+        }
+
+        .contact-note a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .contact-note a:hover { text-decoration: underline; }
+
+        .update-note {
+            display: inline-block;
+            margin-top: 0.4rem;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.22);
+            font-style: italic;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #0c1509;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            color: var(--gold);
+            font-size: 1.05rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        .footer-location {
+            color: rgba(255,255,255,0.28);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+        }
+
+        .footer-rule {
+            height: 1px;
+            background: rgba(196, 162, 74, 0.15);
+            max-width: 360px;
+            margin: 1.8rem auto;
+        }
+
+        .footer-copy {
+            color: rgba(255,255,255,0.2);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.72rem;
+        }
+
+        /* ── SCROLL ANIMATIONS ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* stagger children */
+        .stagger .fade-up:nth-child(2) { transition-delay: 0.12s; }
+        .stagger .fade-up:nth-child(3) { transition-delay: 0.24s; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .about-inner {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-image-wrap { order: -1; }
+            .about-image-wrap img { height: 320px; }
+            .about-image-wrap::before { display: none; }
+
+            .features-grid { grid-template-columns: 1fr; max-width: 440px; }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: 260px 260px 260px;
+            }
+
+            .gallery-item:first-child { grid-row: span 1; }
+        }
+
+        @media (max-width: 640px) {
+            nav { padding: 1rem 1.25rem; }
+            .nav-links { display: none; }
+            .form-row { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav id="navbar">
+    <div class="nav-logo">
+        Bald Mountain
+        <span>Spring Water &nbsp;·&nbsp; Todd, NC</span>
+    </div>
+    <div class="nav-links">
+        <a href="#about">Our Story</a>
+        <a href="#gallery">The Property</a>
+        <a href="#wholesale">Wholesale</a>
+    </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="hero-badge">Blue Ridge Mountains &nbsp;·&nbsp; Todd, North Carolina</div>
+        <h1>Pure Water,<br>Forged by <em>Ancient Mountains</em></h1>
+        <p>Filtered through millions of tons of Blue Ridge granite,<br>rising from the pristine heart of Bald Mountain and Elks Knob.</p>
+        <a href="#wholesale" class="hero-cta">Inquire About Wholesale</a>
+    </div>
+    <div class="hero-scroll">↓ &nbsp; Scroll to Explore</div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+    <div class="about-inner">
+        <div class="about-text fade-up">
+            <div class="section-label">Our Story</div>
+            <div class="gold-rule"></div>
+            <h2>Born from the Heart of the Blue Ridge</h2>
+            <p>Nestled high in the ancient Blue Ridge Mountains of <strong>Todd, North Carolina</strong>, our family-owned land spans a pristine raised valley between two of the region's most storied peaks — <strong>Bald Mountain</strong> and <strong>Elks Knob</strong>.</p>
+            <p>Here, rainfall and snowmelt begin a slow, sacred journey through the earth. Water percolates downward through millions of tons of ancient granite bedrock — one of the oldest geological formations in North America — absorbing naturally occurring minerals at every layer.</p>
+            <blockquote>
+                "What emerges at our spring is not manufactured purity — it is nature's own perfection, shaped over millennia."
+            </blockquote>
+            <p>No industrial processing. No added chemicals. Just the mountain's own filtration, delivering spring water of exceptional clarity, mineral balance, and taste — straight from the high country to you.</p>
+        </div>
+        <div class="about-image-wrap fade-up">
+            <img src="IMG_6768.jpeg"
+                 alt="Sunset panorama over the Blue Ridge Mountain ridgelines as seen from the Bald Mountain property">
+        </div>
+    </div>
+</section>
+
+<!-- ── FEATURES ── -->
+<section id="features">
+    <div class="features-header">
+        <div class="section-label" style="color: var(--gold);">The Blue Ridge Difference</div>
+        <div class="gold-rule" style="margin: 0.6rem auto 1.2rem;"></div>
+        <h2>What Makes Our Water Exceptional</h2>
+        <p>From geology to glass — purity you can taste</p>
+    </div>
+    <div class="features-grid stagger">
+        <div class="feature-card fade-up">
+            <span class="feature-icon">🪨</span>
+            <h3>Ancient Granite Filtration</h3>
+            <p>Our water passes through hundreds of feet of Blue Ridge granite bedrock — naturally purifying every drop while infusing it with beneficial trace minerals found nowhere else.</p>
+        </div>
+        <div class="feature-card fade-up">
+            <span class="feature-icon">💧</span>
+            <h3>Naturally Mineral-Rich</h3>
+            <p>The granite imbues our spring water with an ideal, naturally occurring mineral profile — resulting in a clean, crisp character that sets it apart from purified or municipal sources.</p>
+        </div>
+        <div class="feature-card fade-up">
+            <span class="feature-icon">🌿</span>
+            <h3>Protected Family Land</h3>
+            <p>Our pristine high-valley property between Bald Mountain and Elks Knob remains undeveloped and family-steward — ensuring a pure, protected source for generations to come.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ── GALLERY ── -->
+<section id="gallery">
+    <div class="section-header">
+        <div class="section-label">The Property</div>
+        <div class="gold-rule" style="margin: 0.6rem auto 1.2rem;"></div>
+        <h2>Views from Bald Mountain</h2>
+    </div>
+    <div class="gallery-grid">
+
+        <!-- Large hero image — left column, spans full height -->
+        <div class="gallery-item fade-up"
+             onclick="openLightbox('IMG_6768.jpeg', 'Blue Ridge sunset panorama from the Bald Mountain property')">
+            <img src="IMG_6768.jpeg"
+                 alt="Layered Blue Ridge Mountain ridgelines at golden-hour sunset">
+            <div class="gallery-overlay">
+                <span class="gallery-caption">Sunset Panorama &mdash; Blue Ridge Ridgelines</span>
+            </div>
+        </div>
+
+        <!-- Top-right: stormy dramatic sunset -->
+        <div class="gallery-item fade-up"
+             onclick="openLightbox('IMG_6771.jpeg', 'Storm clouds over the Blue Ridge at dusk')">
+            <img src="IMG_6771.jpeg"
+                 alt="Dramatic storm clouds at dusk above the Blue Ridge Mountains">
+            <div class="gallery-overlay">
+                <span class="gallery-caption">Storm Light &mdash; Bald Mountain</span>
+            </div>
+        </div>
+
+        <!-- Bottom-right: waterfall / water source -->
+        <div class="gallery-item fade-up"
+             onclick="openLightbox('IMG_6963.jpeg', 'Rocky mountain stream and waterfall on the property')">
+            <img src="IMG_6963.jpeg"
+                 alt="Cascading mountain stream through granite boulders and lush forest">
+            <div class="gallery-overlay">
+                <span class="gallery-caption">Mountain Stream &mdash; The Source</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+    <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- ── WHOLESALE ── -->
+<section id="wholesale">
+    <div class="wholesale-inner">
+        <div class="section-label">Wholesale Inquiries</div>
+        <div class="gold-rule" style="margin: 0.6rem auto 1.8rem;"></div>
+        <h2>Partner with Bald Mountain<br>Spring Water</h2>
+        <p>
+            We supply premium Blue Ridge mountain spring water to restaurants, hotels, specialty retailers,
+            and regional distributors. Fill out the form below to receive wholesale pricing,
+            volume options, and delivery information for your area.
+        </p>
+
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+                <input type="text"  placeholder="Your Name"      required>
+                <input type="text"  placeholder="Business Name"  required>
+            </div>
+            <input type="email" placeholder="Email Address" required>
+            <input type="tel"   placeholder="Phone Number (optional)">
+            <select id="bizType" onchange="this.classList.add('filled')">
+                <option value="" disabled selected>Type of Business</option>
+                <option value="restaurant">Restaurant / Hospitality</option>
+                <option value="retail">Retail / Grocery</option>
+                <option value="hotel">Hotel / Resort / Spa</option>
+                <option value="distributor">Wholesale Distributor</option>
+                <option value="other">Other</option>
+            </select>
+            <textarea placeholder="Tell us about your needs — estimated volume, delivery region, frequency, or any questions you have."></textarea>
+            <button type="submit" class="submit-btn" id="submitBtn">
+                Send Wholesale Inquiry
+            </button>
+        </form>
+
+        <p class="contact-note">
+            Prefer email? Reach us directly at
+            <a href="mailto:info@baldmountainspringwater.com">info@baldmountainspringwater.com</a>
+            <span class="update-note">&mdash; update with your actual address before publishing</span>
+        </p>
+    </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+    <div class="footer-logo">Bald Mountain Spring Water</div>
+    <div class="footer-location">Todd, North Carolina &nbsp;&middot;&nbsp; Blue Ridge Mountains</div>
+    <div class="footer-rule"></div>
+    <div class="footer-copy">&copy; 2025 Bald Mountain Spring Water. All rights reserved.</div>
+</footer>
+
+<script>
+    // ── Navbar scroll tint ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.style.background = window.scrollY > 60
+            ? 'rgba(12, 21, 9, 0.97)'
+            : 'rgba(20, 31, 16, 0.82)';
+    }, { passive: true });
+
+    // ── Lightbox ──
+    function openLightbox(src, alt) {
+        const lb  = document.getElementById('lightbox');
+        const img = document.getElementById('lightbox-img');
+        img.src = src;
+        img.alt = alt || '';
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+        // close on backdrop click or explicit call
+        if (e && e.target !== document.getElementById('lightbox') &&
+                 !e.target.classList.contains('lightbox-close')) return;
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // ── Form submit ──
+    function handleSubmit(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.textContent = "Inquiry Received — We'll Be in Touch Soon!";
+        btn.style.background = '#3a6e2e';
+        btn.style.color = '#e8f5e4';
+        btn.disabled = true;
+    }
+
+    // ── Scroll-triggered fade-up ──
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
